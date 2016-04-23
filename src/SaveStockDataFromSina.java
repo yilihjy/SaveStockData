@@ -45,9 +45,7 @@ public class SaveStockDataFromSina implements Runnable{
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/sinastockdata?"
-	                + "user=root&password=123456&useUnicode=true&characterEncoding=UTF8";
-		    coon=DriverManager.getConnection(url);
+			coon=DriverManager.getConnection(ReadExcelAndSaveStockCode.URL);
 		    statement= coon.createStatement();
 		    String sql = "select stock_code FROM stock_code_name";
 		    ResultSet rs = statement.executeQuery(sql);

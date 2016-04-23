@@ -14,15 +14,14 @@ import jxl.read.biff.BiffException;
  *
  */
 public class ReadExcelAndSaveStockCode {
-
+	//请根据情况修改
+	public static final String URL="jdbc:mysql://localhost:3306/sinastockdata?user=root&password=123456&useUnicode=true&characterEncoding=UTF8";
 	public static void main(String[] args) throws SQLException {
 		Connection coon=null;
 		Statement statement=null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			 String url = "jdbc:mysql://localhost:3306/sinastockdata?"
-		                + "user=root&password=123456&useUnicode=true&characterEncoding=UTF8";
-			coon=DriverManager.getConnection(url);
+			coon=DriverManager.getConnection(URL);
 			coon.setAutoCommit(false);
 			statement= coon.createStatement();
 			Workbook workbook=Workbook.getWorkbook(new File("沪深Ａ股.xls"));
