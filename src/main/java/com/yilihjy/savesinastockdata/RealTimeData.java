@@ -8,13 +8,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 
+ * 对新浪财经查询股票实时数据API的封装<br>
+ * API：http://hq.sinajs.cn/<br>
+ * 封装的参数：list<br>
  * @author yilihjy Email:yilihjy@gmail.com
  * @version 1.0.0
  *
  */
 public class RealTimeData {
-	
+	/**
+	 * 获取股票历史数据
+	 * 例子：<br>
+	 * String[] codes = {"sz000002","sz000001"};<br>
+	 * List&lt;RealTimeDataPOJO&gt; result = RealTimeData.getRealTimeDataObjects(codes);<br>
+	 * 
+	 * @param codes 股票代码数组 例如 {"sz000002","sz000001"}
+	 * @return 一个{@link List}，里面是{@link RealTimeDataPOJO}对象
+	 */
 	public static List<RealTimeDataPOJO> getRealTimeDataObjects(String[] codes){
 		String indexPatternString = "var hq_str_s_(\\w{8})=\"(.+)\"";
 		String stockPatterString = "var hq_str_(\\w{8})=\"(.+)\"";
@@ -100,19 +110,4 @@ public class RealTimeData {
 		String url = String.format("http://hq.sinajs.cn/list=%s", codelist);
 		return url;
 	}
-	
-	/**public static void main(String[] args){
-		String stockPatter = "var hq_str_(\\w{8})=\"(.+)\"";
-		Pattern r = Pattern.compile(stockPatter);
-		String test = "var hq_str_sz000002=\"万 科Ａ,20.940,20.930,20.640,21.040,20.610,20.640,20.650,23591954,489032727.730,100749,20.640,213977,20.630,172600,20.620,100532,20.610,418200,20.600,72037,20.650,24791,20.660,20400,20.670,10300,20.680,31900,20.690,2017-01-06,15:21:03,00\"";
-		//System.out.print(stockPatter);
-		Matcher m = r.matcher(test);
-		System.out.println(m.find());
-		System.out.println(m.group(1));
-		System.out.println(m.group(2));
-		String[] s = m.group(2).split(",");
-		for(int i =0;i<32;i++){
-			System.out.println(i+":"+s[i]);
-		}
-	}*/
 }

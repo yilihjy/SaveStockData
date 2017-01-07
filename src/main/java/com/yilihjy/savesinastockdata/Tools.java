@@ -31,13 +31,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONWriter;
 /**
- * 
+ * 提供一些工具方法
  * @author yilihjy Email:yilihjy@gmail.com
  * @version 1.0.0
  *
  */
 public class Tools {
-	
+	/**
+	 * 发送get请求，返回内容字符串
+	 * @param url 请求urll
+	 * @param charsetName 字符码
+	 * @return 响应内容字符串
+	 */
 	public static String sendHTTPGET(String url,String charsetName){
 		String result =null;
 		HttpGet httpGet = new HttpGet(url);
@@ -55,7 +60,11 @@ public class Tools {
 		}
 		return result;
 	}
-	
+	/**
+	 * 将如"2017-01-07 14:07:35"或"2017-01-07"这样的字符串转换为LocalDateTime对象
+	 * @param time 时间字符串
+	 * @return {@link LocalDateTime}对象
+	 */
 	public static LocalDateTime string2LocalDateTime(String time){
 		LocalDateTime result;
 		String[] times = time.split(" ");
@@ -69,7 +78,14 @@ public class Tools {
 		}
 		return result;
 	}
-	
+	/**
+	 * 将{@link InputStream}转换为{@link String}
+	 * @param in {@link InputStream}
+	 * @param charsetName 字符串编码
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 */
 	public static String InputStreamToString(InputStream in,String charsetName) throws UnsupportedEncodingException, IOException{
 		StringBuffer sb = new StringBuffer();
 		byte[] b = new byte[1024];
@@ -79,7 +95,13 @@ public class Tools {
 		return sb.toString();
 	}
 	
-	
+	/**
+	 * 从{@link readExcel2JSON}方法生成的文件中读取指定属性
+	 * @param file 文件路径
+	 * @param key 关键词
+	 * @return 一个{@link List}
+	 * @throws Exception
+	 */
 	public static List<String> getValueFromJSONFile(String file,String key) throws  Exception{
 		List<String> result = new ArrayList<>();
 		InputStream inp = new FileInputStream(file);
@@ -96,12 +118,22 @@ public class Tools {
 		return result;
 	}
 	
+	/**
+	 * 将{@link LocalDateTime}转换为旧式{@link Date}
+	 * @param localDateTime {@link LocalDateTime}对象
+	 * @return {@link Date}对象
+	 */
 	public static Date LocalDateTime2Date(LocalDateTime localDateTime) {
 	    ZoneId zone = ZoneId.of("UTC");
 	    Instant instant = localDateTime.atZone(zone).toInstant();
 	    return Date.from(instant);
 	}
 	
+	/**
+	 * 读取excel文件，生成一个json文件，文件格式见项目根目录的.xlsx文件，<a href="https://github.com/yilihjy/SaveSinaStockData">项目主页</a>
+	 * @param inFileName excel文件文件路径
+	 * @param outFileName 输出文件路径
+	 */
 	public static void readExcel2JSON(String inFileName, String outFileName){
 		try 
 		(

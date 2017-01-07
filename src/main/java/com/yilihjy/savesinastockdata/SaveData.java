@@ -12,7 +12,8 @@ import java.util.List;
 
 
 /**
- * 
+ * 将历史数据或实时数据保存进入数据库。<br>
+ * 注意：此类未经过良好的测试，有潜在的问题，请谨慎使用！！！
  * @author yilihjy Email:yilihjy@gmail.com
  * @version 1.0.0
  *
@@ -150,14 +151,23 @@ public class SaveData {
 			+ "`rise_fall_percent`) "
 			+ "value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) "
 			+ ";";
-	
-	SaveData(String dbname, String user, String pdword){
+	/**
+	 * 构造方法
+	 * @param dbname 数据库名
+	 * @param user 用户名
+	 * @param pdword 密码
+	 */
+	public SaveData(String dbname, String user, String pdword){
 		super();
 		this.url = String.format(SaveData.DBURL_FORMAT, dbname);
 		this.USER = user;
 		this.PDWORD = pdword;
 	}
 	
+	/**
+	 * 初始化数据库，创建表
+	 * @return 成功返回true
+	 */
 	public boolean initDB(){
 		boolean result =false;
 		Connection conn=getConnection();
@@ -203,7 +213,10 @@ public class SaveData {
 		return conn;
 	}
 	
-	
+	/**
+	 * 保存历史数据
+	 * @param fullCodeList 股票代码list，注意股票代码要有sz或sh前缀
+	 */
 	public void saveHistoryData(List<String> fullCodeList){
 		Connection conn=getConnection();
 		Statement stmt=null;
@@ -227,7 +240,6 @@ public class SaveData {
 				try {
 					conn.rollback();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				e.printStackTrace();
@@ -278,6 +290,12 @@ public class SaveData {
 		return result;
 	}
 	
+	/**
+	 * 保存历史数据，使用多线程<br>
+	 * 注意：使用此方法需要谨慎，因为这个方法没有经过良好测试！！存在潜在问题！！
+	 * @param fullCodeList 股票代码list，注意股票代码要有sz或sh前缀
+	 * @param num 线程数
+	 */
 	public void saveHistoryDataPointThread(List<String> fullCodeList,int num){
 		int trems =fullCodeList.size()/num;
 		List<List<String>> ll = new ArrayList<>();
@@ -310,7 +328,11 @@ public class SaveData {
 			t.start();
 		}
 	}
-	
+	/**
+	 * 保存实时数据，当数据库内已有数据时会打印错误信息
+	 * 
+	 * @param fullCodeList  股票代码list，注意股票代码要有sz或sh前缀
+	 */
 	public void saveRealTimeData(List<String> fullCodeList){
 		String[] codes = new String[fullCodeList.size()];
 		for(int i=0;i<fullCodeList.size();i++){
@@ -381,7 +403,12 @@ public class SaveData {
 			}
 		}
 	}
-	
+	/**
+	 * 将股票代码插入数据库
+	 * @param fullCode 股票代码，有sz或sh前缀
+	 * @param code 股票代码，无sz或sh前缀
+	 * @param name 股票名称
+	 */
 	public void insertCode(List<String> fullCode,List<String> code,List<String> name){
 		Connection conn=getConnection();
 		Statement stmt=null;
@@ -414,24 +441,4 @@ public class SaveData {
 			}
 		}
 	}
-	/*
-	public static void main(String args[]) throws Exception{
-		//Tools.readExcel2JSON("沪深A股代码及名称（20170105更新）.xlsx", "stock_code.json");
-		List<String> fullCode = Tools.getValueFromJSONFile("stock_code.json","fullCode");
-		List<String> code = Tools.getValueFromJSONFile("stock_code.json","code");
-		List<String> name = Tools.getValueFromJSONFile("stock_code.json","name");
-		//for(String fullCode:list){
-			//System.out.println(fullCode);
-		//}
-		List<String> codes =new ArrayList<>();
-		codes.add("sz000002");
-		codes.add("sh601901");
-		codes.add("s_sh000001");
-		SaveData saveData =  new SaveData("testdbs","root","123456");
-		saveData.initDB();
-		//saveData.insertCode(fullCode, code, name);
-		saveData.saveRealTimeData(codes);
-		//SaveData saveData =  new SaveData("testdbs","root","123456");
-		//System.out.println(saveData.initDB());
-	}*/
 }

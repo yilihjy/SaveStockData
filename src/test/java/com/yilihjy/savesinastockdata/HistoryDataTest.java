@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.junit.Test;
 import static org.junit.Assert.*;
 /**
- * 
+ * 测试HistoryData类
  * @author yilihjy Email:yilihjy@gmail.com
  * @version 1.0.0
  *
