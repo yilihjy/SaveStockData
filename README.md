@@ -8,16 +8,13 @@
 <p>gradle：<br>在build.gradle中添加依赖<br></p>
 <code>compile group: 'com.yilihjy', name: 'SaveSinaStockData', version: '1.0.1'</code>
 <p>maven：<br>在pom.xml中添加依赖</p>
-<code>
-<pre>&lt;dependency&gt;
-    &lt;groupId&gt;com.yilihjy&lt;/groupId&gt;
-    &lt;artifactId&gt;SaveSinaStockData&lt;/artifactId&gt;
-    &lt;version&gt;1.0.1&lt;/version&gt;
-&lt;/dependency&gt;</pre>
-</code>
-
-<p>如果没有找到库，可能是中央仓库没有同步最新版本，可以使用使用仓库https://oss.sonatype.org/content/groups/public/</p>
-
+```xml
+<dependency>
+    <groupId>com.yilihjy</groupId>
+    <artifactId>SaveSinaStockData</artifactId>
+    <version>1.0.1</version>
+</dependency>
+```
 # Guide
 <p>在demo文件夹内有示例demo</p>
 <p>HistoryData类提供调用历史数据API的方法</p>
