@@ -4,6 +4,7 @@ build/
 /bin
 /build
 stock_code.json
+gradle.properties
 # Ignore Gradle GUI config
 gradle-app.setting
 

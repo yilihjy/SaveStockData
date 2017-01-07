@@ -244,7 +244,7 @@ public class HistoryData {
 	}
 	/**
 	 * 实际调用：getKLineDataObjects(code, HistoryData.FIVE_MINUTES, HistoryData.DEFAULT_DATALEN);
-	 * @param code股票代码
+	 * @param code 股票代码
 	 * @return 一个{@link List}，里面是{@link HistoryDataPOJO}对象
 	 */
 	public static List<HistoryDataPOJO> get5MKlineDataObjects(String code){

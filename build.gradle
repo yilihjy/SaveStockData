@@ -7,13 +7,29 @@
  */
 
 // Apply the java plugin to add support for Java
+apply plugin: 'idea'
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+group = 'com.yilihjy'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
     mavenCentral()
+}
+
+tasks.withType(JavaCompile) { 
+    options.encoding = "UTF-8" 
+}
+
+javadoc {
+    options.encoding = 'UTF-8'
 }
 
 dependencies {
@@ -34,5 +50,72 @@ dependencies {
     
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {  
+                authentication(userName: USER_NAME, password: PASSWORD)  
+            } 
+            
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: USER_NAME, password: PASSWORD)
+            }
+            
+            pom.project {
+                name 'SaveSinaStockData'
+                packaging 'jar'
+                description 'Encapsulae sina stock API by java.Support history data and real time data.'
+                url 'https://github.com/yilihjy/SaveSinaStockData'
+
+                scm {
+                    url 'https://github.com/yilihjy/SaveSinaStockData.git'
+                    connection 'scm:git:https://github.com/yilihjy/SaveSinaStockData.git'
+                    developerConnection 'scm:git:https://github.com/yilihjy/SaveSinaStockData.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'yilihjy'
+                        name 'yilihjy'
+                    }
+                }
+            }
+        }
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
 

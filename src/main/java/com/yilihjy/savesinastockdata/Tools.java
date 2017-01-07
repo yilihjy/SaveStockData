@@ -82,9 +82,9 @@ public class Tools {
 	 * 将{@link InputStream}转换为{@link String}
 	 * @param in {@link InputStream}
 	 * @param charsetName 字符串编码
-	 * @return
-	 * @throws UnsupportedEncodingException
-	 * @throws IOException
+	 * @return 返回String字符串
+	 * @throws UnsupportedEncodingException 不支持的编码
+	 * @throws IOException io错误
 	 */
 	public static String InputStreamToString(InputStream in,String charsetName) throws UnsupportedEncodingException, IOException{
 		StringBuffer sb = new StringBuffer();
@@ -100,7 +100,7 @@ public class Tools {
 	 * @param file 文件路径
 	 * @param key 关键词
 	 * @return 一个{@link List}
-	 * @throws Exception
+	 * @throws Exception 错误
 	 */
 	public static List<String> getValueFromJSONFile(String file,String key) throws  Exception{
 		List<String> result = new ArrayList<>();
