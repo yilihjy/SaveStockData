@@ -7,8 +7,8 @@
 <p>项目已上传maven仓库，可以使用maven或gradle</p>
 <p>gradle：<br>在build.gradle中添加依赖<br></p>
 <code>compile group: 'com.yilihjy', name: 'SaveSinaStockData', version: '1.0.1'</code>
-<p>maven：<br>在pom.xml中添加依赖<br></p>
-<code><br>
+<p>maven：<br>在pom.xml中添加依赖</p>
+<code>
 <pre>&lt;dependency&gt;
     &lt;groupId&gt;com.yilihjy&lt;/groupId&gt;
     &lt;artifactId&gt;SaveSinaStockData&lt;/artifactId&gt;
