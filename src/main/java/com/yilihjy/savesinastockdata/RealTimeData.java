@@ -88,7 +88,7 @@ public class RealTimeData {
 					obj.setRiseAndFall(Double.parseDouble(array[2]));
 					obj.setRiseAndFallPercent(Double.parseDouble(array[3]));
 					obj.setVolume(Double.parseDouble(array[4]));
-					obj.setVolume(Double.parseDouble(array[5]));
+					obj.setVolumePrice(Double.parseDouble(array[5]));
 					LocalDateTime ldt = LocalDateTime.now();
 					obj.setDate(ldt.toLocalDate());
 					obj.setTime(ldt.toLocalTime());

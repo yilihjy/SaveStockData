@@ -1,10 +1,29 @@
 # SaveSinaStockData
 <p>封装新浪股票历史查询和实时查询的API，同时提供将历史数据或实时数据保存进入mysql数据库的方法</p>
-<p>注意：依赖新浪这两个API：<br>http://hq.sinajs.cn/list<br>http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData<br>如果这两个API无法使用，那么无法使用本项目</p>
+<p>注意：依赖新浪这两个API：<br>示例：http://hq.sinajs.cn/list=sz000002<br>示例：http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz000002&scale=5&datalen=10<br>如果这两个API无法使用，那么无法使用本项目</p>
 <p>项目使用gradle构建，如果你需要的话，旧版本的项目在old文件夹内</p>
 
+# Install
+<p>项目已上传maven仓库，可以使用maven或gradle</p>
+<p>gradle：<br>在build.gradle中添加依赖<br></p>
+<code>compile group: 'com.yilihjy', name: 'SaveSinaStockData', version: '1.0.1'</code>
+<p>maven：<br>在pom.xml中添加依赖<br></p>
+<code><br>
+<pre>&lt;dependency&gt;</pre>
+<pre>    &lt;groupId&gt;com.yilihjy&lt;/groupId&gt;</pre>
+<pre>    &lt;artifactId&gt;SaveSinaStockData&lt;/artifactId&gt;</pre>
+<pre>    &lt;version&gt;1.0.1&lt;/version&gt;</pre>
+<pre>&lt;/dependency&gt;</pre>
+</code>
+
+<p>如果没有找到库，可能是中央仓库没有同步最新版本，可以使用使用仓库https://oss.sonatype.org/content/groups/public/</p>
+
 # Guide
-<p>待补完</p>
+<p>在demo文件夹内有示例demo</p>
+<p>HistoryData类提供调用历史数据API的方法</p>
+<p>RealTimeData类提供调用实时数据API的方法</p>
+<p>SaveData类提供了一些保存数据进入mysql数据库的方法</p>
+<p>你可以在我的官网查看<a href="https://yilihjy.com/doc/SaveSinaStockData/index.html">文档</a><br>https://yilihjy.com/doc/SaveSinaStockData/index.html</p>
 
 # License
 
