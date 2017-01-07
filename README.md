@@ -9,11 +9,11 @@
 <code>compile group: 'com.yilihjy', name: 'SaveSinaStockData', version: '1.0.1'</code>
 <p>maven：<br>在pom.xml中添加依赖<br></p>
 <code><br>
-<pre>&lt;dependency&gt;</pre>
-<pre>    &lt;groupId&gt;com.yilihjy&lt;/groupId&gt;</pre>
-<pre>    &lt;artifactId&gt;SaveSinaStockData&lt;/artifactId&gt;</pre>
-<pre>    &lt;version&gt;1.0.1&lt;/version&gt;</pre>
-<pre>&lt;/dependency&gt;</pre>
+<pre>&lt;dependency&gt;
+    &lt;groupId&gt;com.yilihjy&lt;/groupId&gt;
+    &lt;artifactId&gt;SaveSinaStockData&lt;/artifactId&gt;
+    &lt;version&gt;1.0.1&lt;/version&gt;
+&lt;/dependency&gt;</pre>
 </code>
 
 <p>如果没有找到库，可能是中央仓库没有同步最新版本，可以使用使用仓库https://oss.sonatype.org/content/groups/public/</p>
