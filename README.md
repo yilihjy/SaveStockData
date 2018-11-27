@@ -1,4 +1,5 @@
 # SaveSinaStockData
+<p>注意：这个项目并没有在维护</p>
 <p>封装新浪股票历史查询和实时查询的API，同时提供将历史数据或实时数据保存进入mysql数据库的方法</p>
 <p>注意：依赖新浪这两个API：<br>示例：http://hq.sinajs.cn/list=sz000002<br>示例：http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz000002&scale=5&datalen=10<br>如果这两个API无法使用，那么无法使用本项目</p>
 <p>项目使用gradle构建，如果你需要的话，旧版本的项目在old文件夹内</p>
@@ -20,7 +21,6 @@
 <p>HistoryData类提供调用历史数据API的方法</p>
 <p>RealTimeData类提供调用实时数据API的方法</p>
 <p>SaveData类提供了一些保存数据进入mysql数据库的方法</p>
-<p>你可以在我的官网查看<a href="https://yilihjy.com/doc/SaveSinaStockData/index.html">文档</a><br>https://yilihjy.com/doc/SaveSinaStockData/index.html</p>
 
 # License
 
